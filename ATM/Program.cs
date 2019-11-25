@@ -21,99 +21,93 @@ namespace ATM
 
             bool exit = false;
             do
-            {    
-                Console.WriteLine("Menu:");
-                Console.WriteLine("1. Zaloguj");
-                Console.WriteLine("2. Wpłata pieniędzy");
-                Console.WriteLine("3. Wypłata pieniędzy");
-                Console.WriteLine("4. Stan konta");
-                Console.WriteLine("5. Wyloguj");
-                Console.WriteLine("6. Zakończ");
-                int n = Convert.ToInt32(Console.ReadLine());
-
-                switch (n)
+            {
+                Console.Clear();
+                if (!Atm.isLogged)
                 {
-                    case 1:
-                    {if (Atm.isLogged)
-                        {
-                            Console.WriteLine("Jesteś już zalogowany. \n" +
-                                              "Wyloguj, aby zmienić użytkownika.");
-                        }
-                        else
-                        {
-                            client = Atm.LogIn(clients);
-                        }
-                        break;
-                    }
-                    case 2:
-                    {
-                        if (Atm.isLogged)
-                        {
-                            Atm.putMoney(client, clients);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Nie jesteś zalogowany. \n" +
-                                              "Zaloguj się aby wykonać transakcję");
-                        }
-                        break;
-                    }
-                    case 3:
-                    {
-                        if (Atm.isLogged)
-                        {
-                            Atm.getMoney(client, clients);
+                    Console.WriteLine("Zaloguj");
+                    client = Atm.LogIn(clients);
+                }
+                else
+                {
+                    Console.WriteLine("Menu:");
+                    Console.WriteLine("1. Wyloguj");
+                    Console.WriteLine("2. Wpłata pieniędzy");
+                    Console.WriteLine("3. Wypłata pieniędzy");
+                    Console.WriteLine("4. Stan konta");
+                    Console.WriteLine("5. Zakończ");
+                    int n = Convert.ToInt32(Console.ReadLine());
 
-                        }
-                        else
-                        {
-                            Console.WriteLine("Nie jesteś zalogowany. \n" +
-                                              "Zaloguj się aby wykonać transakcję");
-                        }
-                        break;
-                    }
-                    case 4:
+                    switch (n)
                     {
-                        if (Atm.isLogged)
-                        {
-                            Atm.CheckState(client);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Nie jesteś zalogowany. \n" +
-                                              "Zaloguj się aby wykonać transakcję");
-                        }
-                        break;
+                        case 1:
+                            {
+                                if (Atm.isLogged)
+                                {
+                                    Atm.Logout();
+                                    Console.WriteLine("Wylogowano");
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Jesteś wylogowany");
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                if (Atm.isLogged)
+                                {
+                                    Atm.putMoney(client, clients);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Nie jesteś zalogowany. \n" +
+                                                      "Zaloguj się aby wykonać transakcję");
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                if (Atm.isLogged)
+                                {
+                                    Atm.getMoney(client, clients);
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Nie jesteś zalogowany. \n" +
+                                                      "Zaloguj się aby wykonać transakcję");
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                if (Atm.isLogged)
+                                {
+                                    Atm.CheckState(client);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Nie jesteś zalogowany. \n" +
+                                                      "Zaloguj się aby wykonać transakcję");
+                                }
+                                break;
+                            }
+                        case 5:
+                            {
+                                exit = true;
+                                break;
+                            }
+
+                        default:
+                            {
+                                Console.WriteLine("nie ma takiej opcji");
+                                break;
+                            }
+
+
                     }
-                    case 5:
-                    {
-                        if (Atm.isLogged)
-                        {
-                            Atm.Logout();
-                            Console.WriteLine("Wylogowano");
-
-                        }
-                        else
-                        {
-                            Console.WriteLine("Jesteś wylogowany");
-                        }
-                        break;
-                    }
-
-                    case 6:
-                    {
-                        exit = true;
-                        break;
-                    }
-
-                   
-                    default:
-                    {
-                        Console.WriteLine("nie ma takiej opcji");
-                        break;
-                    }
-
-
                 }
             } while (!exit);
             

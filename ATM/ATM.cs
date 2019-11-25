@@ -14,10 +14,17 @@ namespace ATM
             int tries=3;
             do
             {
-                Console.WriteLine("podaj Numer konta");
-                clBack.accountNumber = int.Parse(Console.ReadLine());
-                Console.WriteLine("podaj PIN");
-                clBack.pin = Int32.Parse(Console.ReadLine());
+                try
+                {
+                    Console.WriteLine("podaj Numer konta");
+                    clBack.accountNumber = int.Parse(Console.ReadLine());
+                    Console.WriteLine("podaj PIN");
+                    clBack.pin = Int32.Parse(Console.ReadLine());
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("Nie prawidlowy format");
+                }
                 if(banndedList.Exists(x => x.accountNumber == clBack.accountNumber))
                 {
                     Console.WriteLine("dane konto jest zablokowane");
