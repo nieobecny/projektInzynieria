@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using System.Threading;
 
 namespace ATM
 {
@@ -86,6 +87,7 @@ namespace ATM
                                 if (Atm.isLogged)
                                 {
                                     Atm.CheckState(client);
+                                    Thread.Sleep(5000);
                                 }
                                 else
                                 {
