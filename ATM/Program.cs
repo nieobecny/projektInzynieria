@@ -105,6 +105,7 @@ namespace ATM
                         default:
                             {
                                 Console.WriteLine("nie ma takiej opcji");
+                                Thread.Sleep(5000);
                                 break;
                             }
 
